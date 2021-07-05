@@ -1,0 +1,39 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/AngularJs_Controller/Division.js"></script>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div ng-app="mymodule" ng-controller="mycontroller">
+
+
+    <table class="table" ng-init="GetDivisionList()">
+        <tr>
+            <th>
+                @Html.DisplayName("DivisionName")
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+
+       
+            <tr ng-repeat="item in DivisionList">
+                <td>
+                    {{item.DivisionName}}
+                </td>
+                <td>
+                   <button class="btn btn-dark" ng-click="GetDivisionById(item.DivisionId)">Edit</button>
+                </td>
+            </tr>
+        
+
+    </table>
+</div>

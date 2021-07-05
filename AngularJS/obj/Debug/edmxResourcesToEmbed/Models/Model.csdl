@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AngularJSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Division">
+    <Key>
+      <PropertyRef Name="DivisionId" />
+    </Key>
+    <Property Name="DivisionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DivisionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Districts" Relationship="AngularJSModel.FK__District__Divisi__1273C1CD" FromRole="Division" ToRole="District" />
+  </EntityType>
+  <EntityContainer Name="AngularJSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Divisions" EntityType="Self.Division" />
+    <EntitySet Name="UserInfoes" EntityType="AngularJSModel.UserInfo" />
+    <EntitySet Name="Districts" EntityType="AngularJSModel.District" />
+    <AssociationSet Name="FK__District__Divisi__1273C1CD" Association="AngularJSModel.FK__District__Divisi__1273C1CD">
+      <End Role="Division" EntitySet="Divisions" />
+      <End Role="District" EntitySet="Districts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserInfo__Distri__15502E78" Association="AngularJSModel.FK__UserInfo__Distri__15502E78">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="District" Relationship="AngularJSModel.FK__UserInfo__Distri__15502E78" FromRole="UserInfo" ToRole="District" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="DistrictId" />
+    </Key>
+    <Property Name="DistrictId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DistrictName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DivisionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Division" Relationship="AngularJSModel.FK__District__Divisi__1273C1CD" FromRole="District" ToRole="Division" />
+    <NavigationProperty Name="UserInfoes" Relationship="AngularJSModel.FK__UserInfo__Distri__15502E78" FromRole="District" ToRole="UserInfo" />
+  </EntityType>
+  <Association Name="FK__District__Divisi__1273C1CD">
+    <End Type="AngularJSModel.Division" Role="Division" Multiplicity="1" />
+    <End Type="AngularJSModel.District" Role="District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Division">
+        <PropertyRef Name="DivisionId" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="DivisionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserInfo__Distri__15502E78">
+    <End Type="AngularJSModel.District" Role="District" Multiplicity="1" />
+    <End Type="AngularJSModel.UserInfo" Role="UserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictId" />
+      </Principal>
+      <Dependent Role="UserInfo">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
