@@ -23,12 +23,21 @@ namespace AngularJS.AutoMapper
         {
             CreateMap<UserDTO, UserViewModel>();
             CreateMap<UserViewModel, UserDTO>();
+            CreateMap<UserViewModel, UserInfo>();
+            CreateMap<UserInfo, UserViewModel>();
+
             CreateMap<DivisionDTO, DivisionViewModel>();
             CreateMap<DivisionViewModel, DivisionDTO>();
+            CreateMap<DivisionViewModel,Division>();
+            CreateMap<Division, DivisionViewModel>();
+            CreateMap<DivisionDTO, Division>();
+            CreateMap<Division, DivisionDTO>();
+
+
             CreateMap<DistrictDTO, DistrictViewModel>();
             CreateMap<DistrictViewModel, DistrictDTO>();
-            CreateMap<UserViewModel, UserInfo>();
-            CreateMap<UserInfo,UserViewModel>();
+            CreateMap<DistrictViewModel, District>();
+            CreateMap<District, DistrictViewModel>();
         }
     }
 }

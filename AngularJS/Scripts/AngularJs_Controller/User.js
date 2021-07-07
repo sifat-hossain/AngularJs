@@ -114,7 +114,7 @@ app.controller("mycontroller", function ($scope, $http) {
         }
 
     };
-    /* this method received the data from controller and insert it to the user table
+    /* this method received the data from View and  pass it to the controller
      */
     $scope.SaveData = function () {
         $http({

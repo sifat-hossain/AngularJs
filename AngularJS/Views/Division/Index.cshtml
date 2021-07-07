@@ -13,27 +13,34 @@
 </p>
 <div ng-app="mymodule" ng-controller="mycontroller">
 
-
+    <button class="btn btn-primary" ng-if="!isEditable" ng-click="makeEditable()">Edit</button>
+    <button class="btn btn-primary" ng-if="isEditable" ng-click="saveEditedData()">Save</button>
+    <button class="btn btn-primary" ng-if="isEditable" ng-click="cancelEdit()">Cancel</button>
     <table class="table" ng-init="GetDivisionList()">
         <tr>
             <th>
                 @Html.DisplayName("DivisionName")
             </th>
-            <th>
+            <th ng-if="isEditable">
                 Action
             </th>
         </tr>
 
-       
-            <tr ng-repeat="item in DivisionList">
-                <td>
-                    {{item.DivisionName}}
-                </td>
-                <td>
-                   <button class="btn btn-dark" ng-click="GetDivisionById(item.DivisionId)">Edit</button>
-                </td>
-            </tr>
-        
+
+        <tr ng-repeat="item in divisionList">
+            <td ng-if="!isEditable">
+                {{item.DivisionName}}
+            </td>
+            <td ng-if="isEditable">
+                <input type="text" ng-model="item.DivisionName" class="form-control" ng-change="checkIfChange($index,'DivisionName')"/>
+            </td>
+            <td ng-if="isEditable">
+                <button class="btn btn-danger" ng-click="revert($index)">Revert</button>
+            </td>
+
+
+        </tr>
+
 
     </table>
 </div>

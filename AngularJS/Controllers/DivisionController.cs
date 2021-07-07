@@ -6,122 +6,76 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AngularJS.DTO;
+using AngularJS.Interface;
 using AngularJS.Models;
+using AngularJS.ViewModel;
 
 namespace AngularJS.Controllers
 {
     public class DivisionController : Controller
     {
-        private AngularJSEntities db = new AngularJSEntities();
-
+        IDivision idivision;
+        public DivisionController(IDivision _division)
+        {
+            idivision = _division;
+        }
+       
         // GET: Division
         public ActionResult Index()
         {
             return View();
         }
-
-        // GET: Division/Details/5
-        public ActionResult Details(int? id)
+        public JsonResult GetDivisionList()
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                List<DivisionDTO> divisionDTO = idivision.GetDivisionList();
+                List<DivisionViewModel> divisionViewModel = new List<DivisionViewModel>();
+                global::AutoMapper.Mapper.Map(divisionDTO, divisionViewModel);
+                return Json(divisionViewModel, JsonRequestBehavior.AllowGet);
             }
-            Division division = db.Divisions.Find(id);
-            if (division == null)
+            catch(Exception e)
             {
-                return HttpNotFound();
+                string result = e.Message;
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
-            return View(division);
         }
-
-        // GET: Division/Create
         public ActionResult Create()
         {
             return View();
         }
-
-        // POST: Division/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DivisionId,DivisionName")] Division division)
+        public JsonResult InsertData(List<DivisionViewModel> divisionViewModel)
         {
-            if (ModelState.IsValid)
+            string result = null;
+            try
             {
-                db.Divisions.Add(division);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if(divisionViewModel.Count> 0)
+                {
+                    result = idivision.InsertDivision(divisionViewModel);
+                }
             }
-
-            return View(division);
+            catch(Exception e)
+            {
+                result = e.Message;
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
-
-        // GET: Division/Edit/5
-        public ActionResult Edit(int? id)
+        public JsonResult SaveEditedData(List<DivisionDTO> divisionDTO)
         {
-            if (id == null)
+            string result=null;
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if(divisionDTO.Count>0)
+                {
+                    result = idivision.SaveEditedData(divisionDTO);
+                }
             }
-            Division division = db.Divisions.Find(id);
-            if (division == null)
+            catch(Exception e)
             {
-                return HttpNotFound();
+                result = e.Message;
             }
-            return View(division);
-        }
-
-        // POST: Division/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DivisionId,DivisionName")] Division division)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(division).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(division);
-        }
-
-        // GET: Division/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Division division = db.Divisions.Find(id);
-            if (division == null)
-            {
-                return HttpNotFound();
-            }
-            return View(division);
-        }
-
-        // POST: Division/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Division division = db.Divisions.Find(id);
-            db.Divisions.Remove(division);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

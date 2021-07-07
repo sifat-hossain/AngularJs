@@ -6,36 +6,54 @@
 <script src="~/Scripts/angular.js"></script>
 <script src="~/Scripts/AngularJs_Controller/Division.js"></script>
 
-<h2>Create</h2>
 
 
-
-
-
-<div class="form-horizontal"ng-app="mymodule" ng-controller="mycontroller">
-    <h4>Division</h4>
+<div class="form-horizontal" ng-app="mymodule" ng-controller="mycontroller">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.Label("DivisionName", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input type="text" ng-model="DivisionModel.DivisionName" class="form-control"/>
+
+    <div class="col-md-12 row">
+        <div class="col-md-10 row">
+            <div class=" form-group col-md-1 pl-0 pr-0">
+                @Html.Label("Serial", htmlAttributes: new { @class = "control-label col-md-1" })
+            </div>
+
+            <div class=" form-group col-md-4 pl-0 pr-0">
+                @Html.Label("Division Name", htmlAttributes: new { @class = "control-label col-md-4" })
+            </div>
+
         </div>
     </div>
+
+    <div class="col-md-12 row" ng-repeat="division in divisionList">
+        <div class="col-md-10 row">
+
+            <div class="form-group col-md-1 pl-0 pr-0">
+                <input type="text" class="form-control" ng-disabled="true" ng-value="$index+1" />
+            </div>
+
+            <div class="form-group col-md-5 pl-0 pr-0">
+                <input type="text" ng-model="division.DivisionName" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-1 pt-1 mt-0 pb-1">
+            <button class="btn btn-danger " ng-hide="divisionList.length==1" ng-click="removeItem($index)" value="Delete">
+                - Delete
+            </button>
+        </div>
+    </div>
+
     <br />
+    <div class="form-group">
+        <div class="offset-md-2 col-md-10 pt-1 pb-1">
+            <button class="btn btn-primary" ng-click="addDivisionFeild()">Add+</button>
+        </div>
+    </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-primary" ng-click="InsertData()" />
+        <div class="offset-md-2 col-md-10 pt-1 pb-1">
+            <input type="submit" value="Save" class="btn btn-defult btn-primary" ng-click="InsertData()" />
         </div>
     </div>
 </div>
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

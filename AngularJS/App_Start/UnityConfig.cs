@@ -18,6 +18,7 @@ namespace AngularJS
 
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IUser, UserService>();
+            container.RegisterType<IDivision, DivisionService>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

@@ -14,14 +14,12 @@ namespace AngularJS.Controllers
 {
     public class UserController : Controller
     {
-        private AngularJSEntities db = new AngularJSEntities();
         readonly IUser iuser;
         public UserController(IUser userService)
         {
             iuser = userService;
         }
         // GET: User
-
         public ActionResult Index()
         {
             return View();
