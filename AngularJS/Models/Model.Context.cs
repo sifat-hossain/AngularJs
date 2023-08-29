@@ -16,7 +16,7 @@ namespace AngularJS.Models
     public partial class AngularJSEntities : DbContext
     {
         public AngularJSEntities()
-            : base("name=AngularJSEntities")
+            : base("name=AngularJSEntities1")
         {
         }
     
@@ -25,8 +25,11 @@ namespace AngularJS.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Division> Divisions { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
-        public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Material> Materials { get; set; }
+        public virtual DbSet<Purchase> Purchases { get; set; }
+        public virtual DbSet<PurchaseItem> PurchaseItems { get; set; }
     }
 }

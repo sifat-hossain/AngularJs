@@ -12,21 +12,21 @@ namespace AngularJS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserInfo
+    public partial class Purchase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserInfo()
+        public Purchase()
         {
-            this.Purchases = new HashSet<Purchase>();
+            this.PurchaseItems = new HashSet<PurchaseItem>();
         }
     
-        public int UserId { get; set; }
-        public string Phone { get; set; }
-        public int DistrictId { get; set; }
-        public string UserName { get; set; }
+        public Guid PurchaseId { get; set; }
+        public Nullable<int> SuplierId { get; set; }
+        public Nullable<bool> PurchaseStatus { get; set; }
+        public Nullable<System.DateTime> PurchaseDate { get; set; }
     
-        public virtual District District { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Purchase> Purchases { get; set; }
+        public virtual ICollection<PurchaseItem> PurchaseItems { get; set; }
     }
 }

@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Insert";
+}
+
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/AngularJs_Controller/Purchase.js"></script>
+
+<div class="form-horizontal" ng-app="mymodule" ng-controller="mycontroller" ng-init="init()">
+    <h4>District</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="col-md-2">
+            <label class="form-label">Suplier</label>
+        </div>
+        <div class="col-md-10">
+            <select class="form-control" ng-model="Purchase.UserId"
+                    ng-options="userList.UserId as userList.UserName for userList in UserList">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label class="form-label">Status</label>
+        </div>
+        <div class="col-md-10">
+            <select class="form-control" ng-model="Purchase.Status">
+                <option value="">--Select--</option>
+                <option value="1">Received</option>
+                <option value="0">Pending</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label class="form-label">Date</label>
+        </div>
+        <div class="col-md-10">
+            <input type="date" ng-model="Purchase.PurchaseDate" class="form-control" />
+        </div>
+    </div>
+    <hr />
+    <hr />
+    <div class="form-group align-middle">
+        <div class="col-md-2">
+            <label class="form-label">Material</label>
+        </div>
+        <div class="col-md-10">
+            <select class="form-control" ng-model="Purchase.MaterialId" ng-change="AddPurchaseItem(Purchase.MaterialId)"
+                    ng-options="materialList.MaterialId as materialList.MaterialName for materialList in MaterialList">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+    </div>
+    <hr />
+    <div class="col-md-12 row">
+        <div class="col-md-1">
+            <label class="form-label">SL</label>
+        </div>
+        <div class="col-md-10 row">
+            <div class="form-group col-md-2 pl-0 pr-0">
+                @Html.Label("Item Name", htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="form-group col-md-2 pl-0 pr-0">
+                @Html.Label("Unit Price", htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="form-group col-md-2 pl-0 pr-0">
+                @Html.Label("Quantity", htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="form-group col-md-2 pl-0 pr-0">
+                @Html.Label("Tax", htmlAttributes: new { @class = "control-label" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 row" ng-repeat="purchaseItems in PurchaseItems track by $index">
+        <div class="col-md-1">
+            <input type="text" class="form-control" ng-disabled="true" ng-value="$index+1" />
+        </div>
+        <div class="col-md-10 row">
+            <div class="form-group col-md-2 pl-0 pr-0">
+                <input type="text" class="form-control" ng-disabled="true" ng-value="purchaseItems.MaterialName" />
+            </div>
+            <div class="form-group col-md-2 pl-0 pr-0">
+                <input type="text" class="form-control" ng-model="purchaseItems.UnitPrice" />
+            </div>
+            <div class="form-group col-md-2 pl-0 pr-0">
+                <input type="text" class="form-control" ng-model="purchaseItems.Quantity" />
+            </div>
+            <div class="form-group col-md-2 pl-0 pr-0">
+                <input type="text" class="form-control" ng-model="purchaseItems.Tax" />
+            </div>
+            <div class="col-md-2 p">
+                <button class="btn btn-danger " ng-hide="PurchaseItems.length==1" ng-click="RemoveItem($index)">
+                    Remove
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default btn-primary" ng-click="SaveData(Purchase)" />
+        </div>
+    </div>
+</div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

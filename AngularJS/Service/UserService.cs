@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AngularJS.Models;
-using AngularJS.DTO;
+﻿using AngularJS.DTO;
 using AngularJS.Interface;
+using AngularJS.Models;
 using AngularJS.ViewModel;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
 namespace AngularJS.Service
 {
@@ -55,7 +54,7 @@ namespace AngularJS.Service
         public List<UserDTO> GetUser()
         {          
 
-            List<UserDTO> userDTOs = db.UserInfoes.Select(x => new UserDTO { DivisionId=x.District.DivisionId,DistrictId=x.DistrictId, DistrictName = x.District.DistrictName, Phone=x.Phone, UserId=x.UserId, UserName=x.UserName }).ToList();
+            List<UserDTO> userDTOs = db.UserInfoes.Select(x => new UserDTO { DivisionId= (int)x.District.DivisionId,DistrictId=x.DistrictId, DistrictName = x.District.DistrictName, Phone=x.Phone, UserId=x.UserId, UserName=x.UserName }).ToList();
 
             return userDTOs;
         }

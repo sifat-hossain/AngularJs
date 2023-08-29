@@ -22,7 +22,7 @@ namespace AngularJS.Models
     
         public int DistrictId { get; set; }
         public string DistrictName { get; set; }
-        public int DivisionId { get; set; }
+        public Nullable<int> DivisionId { get; set; }
     
         public virtual Division Division { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

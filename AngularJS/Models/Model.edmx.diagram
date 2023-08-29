@@ -4,13 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b59887f46c5f48b895e855b70950a284" Name="Diagram1">
-        <EntityTypeShape EntityType="AngularJSModel.Division" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AngularJSModel.UserInfo" Width="1.5" PointX="5.25" PointY="0.875" />
-        <EntityTypeShape EntityType="AngularJSModel.District" Width="1.5" PointX="3" PointY="0.875" />
-        <AssociationConnector Association="AngularJSModel.FK__District__Divisi__1273C1CD" />
-        <AssociationConnector Association="AngularJSModel.FK__UserInfo__Distri__15502E78" />
-      </Diagram>
+      <Diagram DiagramId="cb28542811fc4defb37e5510afb0164f" Name="Diagram1">
+        <EntityTypeShape EntityType="AngularJSModel.District" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AngularJSModel.Division" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AngularJSModel.UserInfo" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="AngularJSModel.FK__District__Divisi__1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="AngularJSModel.FK__UserInfo__Distri__15502E78" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AngularJSModel.Material" Width="1.5" PointX="7.5" PointY="5.375" />
+        <EntityTypeShape EntityType="AngularJSModel.Purchase" Width="1.5" PointX="7.5" PointY="1.125" />
+        <EntityTypeShape EntityType="AngularJSModel.PurchaseItem" Width="1.5" PointX="9.75" PointY="0.875" />
+        <AssociationConnector Association="AngularJSModel.FK_PurchaseItem_Material" />
+        <AssociationConnector Association="AngularJSModel.FK_Purchase_UserInfo" />
+        <AssociationConnector Association="AngularJSModel.FK_PurchaseItem_Purchase" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

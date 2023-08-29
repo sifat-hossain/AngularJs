@@ -167,6 +167,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\AngularJs_Controller\Division.js" />
+    <Content Include="Scripts\AngularJs_Controller\Purchase.js" />
     <Content Include="Scripts\AngularJs_Controller\User.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -964,6 +965,7 @@
     <Compile Include="Automapper\Automapper.cs" />
     <Compile Include="Controllers\DistrictController.cs" />
     <Compile Include="Controllers\DivisionController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DTO\DistrictDTO.cs" />
     <Compile Include="DTO\DivisionDTO.cs" />
@@ -977,6 +979,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Division.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Material.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.Context.cs">
@@ -994,6 +999,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Purchase.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PurchaseItem.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserInfo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -1002,6 +1013,7 @@
     <Compile Include="Service\UserService.cs" />
     <Compile Include="ViewModel\DistrictViewModel.cs" />
     <Compile Include="ViewModel\DivisionViewModel.cs" />
+    <Compile Include="ViewModel\PurchaseViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1046,6 +1058,7 @@
     <Content Include="Views\District\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\Purchase\Insert.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

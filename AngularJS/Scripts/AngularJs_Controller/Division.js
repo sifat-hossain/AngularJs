@@ -78,7 +78,7 @@ app.controller("mycontroller", function ($scope, $http) {
         }
     };
     $scope.saveEditedData = function () {
-        debugger
+       debugger
         var modifiedDivision = [];
         for (var i = 0; i < $scope.divisionList.length; i++) {
             if (angular.equals($scope.divisionList[i].isEdited, true)) {
